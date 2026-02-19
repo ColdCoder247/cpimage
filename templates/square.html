@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  width: 1080px;
+  height: 1080px;
+  margin: 0;
+  background: #0f172a;
+  font-family: Arial;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
 
+.card {
+  text-align: center;
+}
+
+.price {
+  font-size: 100px;
+  margin: 40px 0;
+}
+
+.change {
+  font-size: 60px;
+  color: {{color}};
+}
+</style>
+</head>
+
+<body>
+<div class="card">
+  <h1 style="font-size:80px">{{coin_name}}</h1>
+  <div class="price">${{price_usd}}</div>
+  <div>₹{{price_inr}}</div>
+  <div class="change">{{change}}%</div>
+</div>
+</body>
+</html>
