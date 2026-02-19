@@ -1,1 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+body {
+  margin: 0;
+  width: 1080px;
+  height: 1080px;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  padding: 60px;
+  box-sizing: border-box;
+}
 
+.title {
+  text-align: center;
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  padding: 20px 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: white;
+  padding: 5px;
+  margin-right: 20px;
+}
+
+.coin-info {
+  font-size: 28px;
+}
+
+.price {
+  font-size: 22px;
+  opacity: 0.8;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 24px;
+  opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="title">🏆 Weekly Top 10 Cryptos</div>
+
+<div class="grid">
+
+  <div class="card">
+    <img src="{{coin0_logo}}">
+    <div class="coin-info">{{coin0_name}}<div class="price">${{coin0_price}}</div></div>
+  </div>
+
+  <div class="card">
+    <img src="{{coin1_logo}}">
+    <div class="coin-info">{{coin1_name}}<div class="price">${{coin1_price}}</div></div>
+  </div>
+
+  <div class="card">
+    <img src="{{coin2_logo}}">
+    <div class="coin-info">{{coin2_name}}<div class="price">${{coin2_price}}</div></div>
+  </div>
+
+  <div class="card">
+    <img src="{{coin3_logo}}">
+    <div class="coin-info">{{coin3_name}}<div class="price">${{coin3_price}}</div></div>
+  </div>
+
+  <div class="card">
+    <img src="{{coin4_logo}}">
+    <div class="coin-info">{{coin4_name}}<div class="price">${{coin4_price}}</div></div>
+  </div>
+
+  <div class="card">
+    <img src="{{coin5_logo}}">
+    <div class="coin-info">{{coin5_name}}<div class="price">${{coin5_price}}</div></div>
+  </div>
+
+  <div class="card">
+    <img src="{{coin6_logo}}">
+    <div class="coin-info">{{coin6_name}}<div class="price">${{coin6_price}}</div></div>
+  </div>
+
+  <div class="card">
+    <img src="{{coin7_logo}}">
+    <div class="coin-info">{{coin7_name}}<div class="price">${{coin7_price}}</div></div>
+  </div>
+
+  <div class="card">
+    <img src="{{coin8_logo}}">
+    <div class="coin-info">{{coin8_name}}<div class="price">${{coin8_price}}</div></div>
+  </div>
+
+  <div class="card">
+    <img src="{{coin9_logo}}">
+    <div class="coin-info">{{coin9_name}}<div class="price">${{coin9_price}}</div></div>
+  </div>
+
+</div>
+
+<div class="footer">CoinoPrice.com</div>
+
+</body>
+</html>
