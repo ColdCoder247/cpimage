@@ -26,9 +26,10 @@ jobs:
 
       - run: python generate.py
 
-      - run: |
+      - name: Commit Generated Files
+        run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
-          git add output/*.png used_coins.txt || true
-          git commit -m "Auto crypto post update" || echo "No changes"
+          git add .
+          git commit -m "Auto crypto post update" || echo "No changes to commit"
           git push
