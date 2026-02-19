@@ -1,23 +1,19 @@
 import os
 import requests
+import random
 from playwright.sync_api import sync_playwright
 from datetime import datetime
-
-# ==========================================
-# CONFIG
-# ==========================================
-
-COINS = ["bitcoin", "ethereum"]  # Add more coins here
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
+USED_FILE = os.path.join(BASE_DIR, "used_coins.txt")
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# ==========================================
-# HELPER: Format Large Numbers
-# ==========================================
+# --------------------------------
+# Utility Functions
+# --------------------------------
 
 def format_number(num):
     if num >= 1_000_000_000:
@@ -26,45 +22,65 @@ def format_number(num):
         return f"{round(num/1_000_000,2)}M"
     elif num >= 1_000:
         return f"{round(num/1_000,2)}K"
-    else:
-        return str(num)
+    return str(num)
 
-# ==========================================
-# FETCH MARKET DATA
-# ==========================================
-
-def get_data(coin):
-
-    url = f"https://api.coingecko.com/api/v3/coins/markets"
+def fetch_top_100():
+    url = "https://api.coingecko.com/api/v3/coins/markets"
     params = {
         "vs_currency": "usd",
-        "ids": coin,
+        "order": "market_cap_desc",
+        "per_page": 100,
+        "page": 1,
         "price_change_percentage": "24h"
     }
+    return requests.get(url, params=params).json()
 
-    response = requests.get(url, params=params)
-    data = response.json()[0]
+def get_trending():
+    url = "https://api.coingecko.com/api/v3/search/trending"
+    data = requests.get(url).json()
+    return [coin["item"]["id"] for coin in data["coins"]]
 
-    return {
-        "name": data["name"],
-        "usd": data["current_price"],
-        "inr": data["current_price"] * 83,  # approx conversion (fast + safe)
-        "change": round(data["price_change_percentage_24h"], 2),
-        "rank": data["market_cap_rank"],
-        "market_cap": format_number(data["market_cap"]),
-        "volume": format_number(data["total_volume"])
-    }
+def load_used():
+    if not os.path.exists(USED_FILE):
+        return []
+    with open(USED_FILE, "r") as f:
+        return f.read().splitlines()
 
-# ==========================================
-# RENDER IMAGE
-# ==========================================
+def save_used(coin_id):
+    used = load_used()
+    used.append(coin_id)
+    used = used[-20:]
+    with open(USED_FILE, "w") as f:
+        f.write("\n".join(used))
 
-def render_image(template_name, output_name, width, height, replacements):
+# --------------------------------
+# Detect Post Type Automatically
+# --------------------------------
+
+def get_post_type():
+    now = datetime.utcnow()
+    weekday = now.weekday()
+    hour = now.hour
+
+    if weekday == 6 and hour < 10:
+        return "weekly"
+
+    if hour < 8:
+        return "top"
+    elif hour < 12:
+        return "gainer"
+    elif hour < 16:
+        return "trending"
+    else:
+        return "gainer_vs_loser"
+
+# --------------------------------
+# Render Image
+# --------------------------------
+
+def render(template_name, output_name, width, height, replacements):
 
     template_path = os.path.join(TEMPLATE_DIR, template_name)
-
-    if not os.path.exists(template_path):
-        raise FileNotFoundError(f"{template_name} not found inside templates folder.")
 
     with open(template_path, "r", encoding="utf-8") as file:
         html = file.read()
@@ -84,37 +100,81 @@ def render_image(template_name, output_name, width, height, replacements):
         page.screenshot(path=os.path.join(OUTPUT_DIR, output_name))
         browser.close()
 
-# ==========================================
-# MAIN EXECUTION
-# ==========================================
+# --------------------------------
+# Main Logic
+# --------------------------------
 
-for coin in COINS:
+data = fetch_top_100()
+post_type = get_post_type()
+used = load_used()
 
-    print(f"Generating image for {coin}...")
+print(f"Running post type: {post_type}")
 
-    data = get_data(coin)
+# WEEKLY TOP 10
+if post_type == "weekly":
 
-    updated_time = datetime.utcnow().strftime("%d %b %Y %H:%M UTC")
-    color = "#00ff88" if data["change"] >= 0 else "#ff4d4d"
+    top10 = data[:10]
+
+    replacements = {}
+    for i, coin in enumerate(top10):
+        replacements[f"{{{{coin{i}_name}}}}"] = coin["name"]
+        replacements[f"{{{{coin{i}_price}}}}"] = coin["current_price"]
+        replacements[f"{{{{coin{i}_logo}}}}"] = coin["image"]
+
+    render("top10.html", "weekly_top10.png", 1080, 1080, replacements)
+    exit()
+
+# NIGHT: GAINER VS LOSER
+if post_type == "gainer_vs_loser":
+
+    sorted_data = sorted(data, key=lambda x: x["price_change_percentage_24h"] or 0)
+    loser = sorted_data[0]
+    gainer = sorted_data[-1]
 
     replacements = {
-        "{{coin_name}}": data["name"],
-        "{{price_usd}}": data["usd"],
-        "{{price_inr}}": int(data["inr"]),
-        "{{change}}": data["change"],
-        "{{rank}}": data["rank"],
-        "{{market_cap}}": data["market_cap"],
-        "{{volume}}": data["volume"],
-        "{{color}}": color,
-        "{{updated_time}}": updated_time
+        "{{gainer_name}}": gainer["name"],
+        "{{gainer_price}}": gainer["current_price"],
+        "{{gainer_change}}": round(gainer["price_change_percentage_24h"],2),
+        "{{gainer_logo}}": gainer["image"],
+        "{{loser_name}}": loser["name"],
+        "{{loser_price}}": loser["current_price"],
+        "{{loser_change}}": round(loser["price_change_percentage_24h"],2),
+        "{{loser_logo}}": loser["image"],
     }
 
-    render_image(
-        "square.html",
-        f"{coin}_square.png",
-        1080,
-        1080,
-        replacements
-    )
+    render("gainer_loser.html", "gainer_vs_loser.png", 1080, 1080, replacements)
+    exit()
 
-print("✅ Professional crypto images generated successfully.")
+# SINGLE COIN POSTS
+
+if post_type == "top":
+    coin = data[0]
+
+elif post_type == "gainer":
+    coin = sorted(data, key=lambda x: x["price_change_percentage_24h"] or 0, reverse=True)[0]
+
+elif post_type == "trending":
+    trending_ids = get_trending()
+    trending = [c for c in data if c["id"] in trending_ids]
+    coin = trending[0] if trending else data[1]
+
+# Prevent duplicate
+if coin["id"] in used:
+    for c in data:
+        if c["id"] not in used:
+            coin = c
+            break
+
+save_used(coin["id"])
+
+replacements = {
+    "{{coin_name}}": coin["name"],
+    "{{price_usd}}": coin["current_price"],
+    "{{change}}": round(coin["price_change_percentage_24h"],2),
+    "{{rank}}": coin["market_cap_rank"],
+    "{{logo_url}}": coin["image"],
+}
+
+render("square.html", f"{coin['id']}.png", 1080, 1080, replacements)
+
+print("Done.")
