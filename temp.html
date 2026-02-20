@@ -1,109 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <style>
 body {
   margin: 0;
   width: 1080px;
   height: 1080px;
-  font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(135deg, #0f172a, #1e293b);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-family: 'Segoe UI', sans-serif;
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 60px;
+}
+
+.container {
+  width: 900px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .card {
-  width: 900px;
-  padding: 60px;
-  border-radius: 40px;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+  width: 420px;
+  padding: 40px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.gainer {
+  background: linear-gradient(135deg, #003d2e, #00c853);
+}
+
+.loser {
+  background: linear-gradient(135deg, #3d0000, #d50000);
+}
+
+.card img {
+  width: 90px;
+  height: 90px;
+  background: white;
+  border-radius: 50%;
+  padding: 10px;
+  margin-bottom: 20px;
 }
 
 .coin-name {
-  font-size: 70px;
-  font-weight: 700;
-}
-
-.rank {
-  background: #111827;
-  padding: 12px 30px;
-  border-radius: 50px;
-  font-size: 32px;
+  font-size: 36px;
+  margin-bottom: 10px;
 }
 
 .price {
-  font-size: 120px;
-  margin: 40px 0;
-  font-weight: 700;
-}
-
-.inr {
-  font-size: 40px;
-  opacity: 0.7;
+  font-size: 50px;
+  margin: 20px 0;
 }
 
 .change {
-  font-size: 60px;
+  font-size: 40px;
   font-weight: bold;
-  margin-top: 20px;
-  color: {{color}};
-}
-
-.stats {
-  margin-top: 60px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 36px;
 }
 
 .footer {
-  margin-top: 80px;
-  font-size: 28px;
+  position: absolute;
+  bottom: 40px;
+  font-size: 24px;
   opacity: 0.6;
-  text-align: center;
 }
 </style>
 </head>
 
 <body>
-<div class="card">
 
-  <div class="header">
-    <div class="coin-name">Tether</div>
-    <div class="rank">#3</div>
+<div class="title">📊 Daily Market Wrap</div>
+
+<div class="container">
+
+  <div class="card gainer">
+    <h2>🔥 Top Gainer</h2>
+    <img src="https://coin-images.coingecko.com/coins/images/70426/large/KITE-ICON.png?1762328605">
+    <div class="coin-name">Kite</div>
+    <div class="price">$0.285485</div>
+    <div class="change">+19.69%</div>
   </div>
 
-  <div class="price">$0.999726</div>
-  <div class="inr">₹{{price_inr}}</div>
-
-  <div class="change">0.0% (24H)</div>
-
-  <div class="stats">
-    <div>
-      <div>Market Cap</div>
-      <div>${{market_cap}}</div>
-    </div>
-    <div>
-      <div>Volume</div>
-      <div>${{volume}}</div>
-    </div>
-  </div>
-
-  <div class="footer">
-    Updated: {{updated_time}}  
-    | CoinoPrice.com
+  <div class="card loser">
+    <h2>🔻 Top Loser</h2>
+    <img src="https://coin-images.coingecko.com/coins/images/12645/large/aave-token-round.png?1720472354">
+    <div class="coin-name">Aave</div>
+    <div class="price">$117.6</div>
+    <div class="change">-4.86%</div>
   </div>
 
 </div>
+
+<div class="footer">CoinoPrice.com</div>
+
 </body>
 </html>
