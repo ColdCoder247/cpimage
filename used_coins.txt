@@ -4,3 +4,4 @@ ethereum
 tether
 ripple
 ethereum-classic
+binancecoin
