@@ -2,3 +2,4 @@ kite-2
 bitcoin
 ethereum
 tether
+ripple
