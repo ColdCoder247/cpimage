@@ -3,3 +3,4 @@ bitcoin
 ethereum
 tether
 ripple
+ethereum-classic
