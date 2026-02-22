@@ -6,3 +6,4 @@ ripple
 ethereum-classic
 binancecoin
 pippin
+usd-coin
