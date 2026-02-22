@@ -1,127 +1,109 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <style>
 body {
   margin: 0;
   width: 1080px;
   height: 1080px;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
   font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
-  padding: 60px;
-  box-sizing: border-box;
-}
-
-.title {
-  text-align: center;
-  font-size: 60px;
-  font-weight: bold;
-  margin-bottom: 40px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 30px;
 }
 
 .card {
-  display: flex;
-  align-items: center;
+  width: 900px;
+  padding: 60px;
+  border-radius: 40px;
   background: rgba(255,255,255,0.05);
-  padding: 20px 30px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
 }
 
-.card img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: white;
-  padding: 5px;
-  margin-right: 20px;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.coin-info {
-  font-size: 28px;
+.coin-name {
+  font-size: 70px;
+  font-weight: 700;
+}
+
+.rank {
+  background: #111827;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 32px;
 }
 
 .price {
-  font-size: 22px;
-  opacity: 0.8;
+  font-size: 120px;
+  margin: 40px 0;
+  font-weight: 700;
+}
+
+.inr {
+  font-size: 40px;
+  opacity: 0.7;
+}
+
+.change {
+  font-size: 60px;
+  font-weight: bold;
+  margin-top: 20px;
+  color: {{color}};
+}
+
+.stats {
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 36px;
 }
 
 .footer {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 24px;
+  margin-top: 80px;
+  font-size: 28px;
   opacity: 0.6;
+  text-align: center;
 }
 </style>
 </head>
 
 <body>
+<div class="card">
 
-<div class="title">🏆 Weekly Top 10 Cryptos</div>
-
-<div class="grid">
-
-  <div class="card">
-    <img src="https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png?1696501400">
-    <div class="coin-info">Bitcoin<div class="price">$67985</div></div>
+  <div class="header">
+    <div class="coin-name">pippin</div>
+    <div class="rank">#89</div>
   </div>
 
-  <div class="card">
-    <img src="https://coin-images.coingecko.com/coins/images/279/large/ethereum.png?1696501628">
-    <div class="coin-info">Ethereum<div class="price">$1975.66</div></div>
+  <div class="price">$0.584036</div>
+  <div class="inr">₹{{price_inr}}</div>
+
+  <div class="change">18.12% (24H)</div>
+
+  <div class="stats">
+    <div>
+      <div>Market Cap</div>
+      <div>${{market_cap}}</div>
+    </div>
+    <div>
+      <div>Volume</div>
+      <div>${{volume}}</div>
+    </div>
   </div>
 
-  <div class="card">
-    <img src="https://coin-images.coingecko.com/coins/images/325/large/Tether.png?1696501661">
-    <div class="coin-info">Tether<div class="price">$0.99975</div></div>
-  </div>
-
-  <div class="card">
-    <img src="https://coin-images.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png?1696501442">
-    <div class="coin-info">XRP<div class="price">$1.42</div></div>
-  </div>
-
-  <div class="card">
-    <img src="https://coin-images.coingecko.com/coins/images/825/large/bnb-icon2_2x.png?1696501970">
-    <div class="coin-info">BNB<div class="price">$622.37</div></div>
-  </div>
-
-  <div class="card">
-    <img src="https://coin-images.coingecko.com/coins/images/6319/large/USDC.png?1769615602">
-    <div class="coin-info">USDC<div class="price">$0.999871</div></div>
-  </div>
-
-  <div class="card">
-    <img src="https://coin-images.coingecko.com/coins/images/4128/large/solana.png?1718769756">
-    <div class="coin-info">Solana<div class="price">$85.1</div></div>
-  </div>
-
-  <div class="card">
-    <img src="https://coin-images.coingecko.com/coins/images/1094/large/tron-logo.png?1696502193">
-    <div class="coin-info">TRON<div class="price">$0.287385</div></div>
-  </div>
-
-  <div class="card">
-    <img src="https://coin-images.coingecko.com/coins/images/5/large/dogecoin.png?1696501409">
-    <div class="coin-info">Dogecoin<div class="price">$0.097245</div></div>
-  </div>
-
-  <div class="card">
-    <img src="https://coin-images.coingecko.com/coins/images/68480/large/figure.png?1755863954">
-    <div class="coin-info">Figure Heloc<div class="price">$1.046</div></div>
+  <div class="footer">
+    Updated: {{updated_time}}  
+    | CoinoPrice.com
   </div>
 
 </div>
-
-<div class="footer">CoinoPrice.com</div>
-
 </body>
 </html>

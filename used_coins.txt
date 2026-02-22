@@ -5,3 +5,4 @@ tether
 ripple
 ethereum-classic
 binancecoin
+pippin
