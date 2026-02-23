@@ -7,3 +7,4 @@ ethereum-classic
 binancecoin
 pippin
 usd-coin
+solana
