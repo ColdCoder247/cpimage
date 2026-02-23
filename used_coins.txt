@@ -9,3 +9,4 @@ pippin
 usd-coin
 solana
 tron
+dogecoin
