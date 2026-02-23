@@ -8,3 +8,4 @@ binancecoin
 pippin
 usd-coin
 solana
+tron
