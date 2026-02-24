@@ -12,3 +12,4 @@ tron
 dogecoin
 figure-heloc
 whitebit
+usds
