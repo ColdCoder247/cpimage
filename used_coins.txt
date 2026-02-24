@@ -11,3 +11,4 @@ solana
 tron
 dogecoin
 figure-heloc
+whitebit
