@@ -13,3 +13,4 @@ dogecoin
 figure-heloc
 whitebit
 usds
+bitcoin-cash
