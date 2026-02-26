@@ -1,4 +1,3 @@
-kite-2
 bitcoin
 ethereum
 tether
@@ -18,3 +17,4 @@ morpho
 cardano
 leo-token
 polkadot
+hyperliquid
