@@ -16,3 +16,4 @@ usds
 bitcoin-cash
 morpho
 cardano
+leo-token
