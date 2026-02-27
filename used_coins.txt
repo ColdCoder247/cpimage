@@ -1,4 +1,3 @@
-ethereum
 tether
 ripple
 ethereum-classic
@@ -18,3 +17,4 @@ leo-token
 polkadot
 hyperliquid
 canton-network
+decred
