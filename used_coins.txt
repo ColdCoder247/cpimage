@@ -1,4 +1,3 @@
-bitcoin
 ethereum
 tether
 ripple
@@ -18,3 +17,4 @@ cardano
 leo-token
 polkadot
 hyperliquid
+canton-network
