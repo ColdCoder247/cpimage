@@ -1,4 +1,3 @@
-ethereum-classic
 binancecoin
 pippin
 usd-coin
@@ -18,3 +17,4 @@ canton-network
 decred
 bitcoin
 ethereum
+pax-gold
