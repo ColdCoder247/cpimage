@@ -1,4 +1,3 @@
-binancecoin
 pippin
 usd-coin
 solana
@@ -18,3 +17,4 @@ decred
 bitcoin
 ethereum
 pax-gold
+tether
