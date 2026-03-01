@@ -1,4 +1,3 @@
-usd-coin
 solana
 tron
 dogecoin
@@ -18,3 +17,4 @@ ethereum
 pax-gold
 tether
 jupiter-exchange-solana
+binancecoin
