@@ -1,4 +1,3 @@
-dogecoin
 figure-heloc
 whitebit
 usds
@@ -18,3 +17,4 @@ jupiter-exchange-solana
 binancecoin
 ripple
 usd-coin
+solana
