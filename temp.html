@@ -1,107 +1,109 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <style>
 body {
   margin: 0;
   width: 1080px;
   height: 1080px;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
   font-family: 'Segoe UI', sans-serif;
-  color: white;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-}
-
-.title {
-  font-size: 60px;
-  font-weight: bold;
-  margin-bottom: 60px;
-}
-
-.container {
-  width: 900px;
-  display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  color: white;
 }
 
 .card {
-  width: 420px;
-  padding: 40px;
-  border-radius: 30px;
-  text-align: center;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  width: 900px;
+  padding: 60px;
+  border-radius: 40px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
 }
 
-.gainer {
-  background: linear-gradient(135deg, #003d2e, #00c853);
-}
-
-.loser {
-  background: linear-gradient(135deg, #3d0000, #d50000);
-}
-
-.card img {
-  width: 90px;
-  height: 90px;
-  background: white;
-  border-radius: 50%;
-  padding: 10px;
-  margin-bottom: 20px;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .coin-name {
-  font-size: 36px;
-  margin-bottom: 10px;
+  font-size: 70px;
+  font-weight: 700;
+}
+
+.rank {
+  background: #111827;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 32px;
 }
 
 .price {
-  font-size: 50px;
-  margin: 20px 0;
+  font-size: 120px;
+  margin: 40px 0;
+  font-weight: 700;
+}
+
+.inr {
+  font-size: 40px;
+  opacity: 0.7;
 }
 
 .change {
-  font-size: 40px;
+  font-size: 60px;
   font-weight: bold;
+  margin-top: 20px;
+  color: {{color}};
+}
+
+.stats {
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 36px;
 }
 
 .footer {
-  position: absolute;
-  bottom: 40px;
-  font-size: 24px;
+  margin-top: 80px;
+  font-size: 28px;
   opacity: 0.6;
+  text-align: center;
 }
 </style>
 </head>
 
 <body>
+<div class="card">
 
-<div class="title">📊 Daily Market Wrap</div>
-
-<div class="container">
-
-  <div class="card gainer">
-    <h2>🔥 Top Gainer</h2>
-    <img src="https://coin-images.coingecko.com/coins/images/34188/large/jup.png?1704266489">
-    <div class="coin-name">Jupiter</div>
-    <div class="price">$0.164851</div>
-    <div class="change">+9.68%</div>
+  <div class="header">
+    <div class="coin-name">XRP</div>
+    <div class="rank">#5</div>
   </div>
 
-  <div class="card loser">
-    <h2>🔻 Top Loser</h2>
-    <img src="https://coin-images.coingecko.com/coins/images/51589/large/pippin_logo.png?1731570163">
-    <div class="coin-name">pippin</div>
-    <div class="price">$0.578264</div>
-    <div class="change">-3.56%</div>
+  <div class="price">$1.35</div>
+  <div class="inr">₹{{price_inr}}</div>
+
+  <div class="change">-3.53% (24H)</div>
+
+  <div class="stats">
+    <div>
+      <div>Market Cap</div>
+      <div>${{market_cap}}</div>
+    </div>
+    <div>
+      <div>Volume</div>
+      <div>${{volume}}</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Updated: {{updated_time}}  
+    | CoinoPrice.com
   </div>
 
 </div>
-
-<div class="footer">CoinoPrice.com</div>
-
 </body>
 </html>

@@ -1,4 +1,3 @@
-solana
 tron
 dogecoin
 figure-heloc
@@ -18,3 +17,4 @@ pax-gold
 tether
 jupiter-exchange-solana
 binancecoin
+ripple
