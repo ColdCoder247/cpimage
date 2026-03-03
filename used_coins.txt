@@ -1,4 +1,3 @@
-usds
 bitcoin-cash
 morpho
 cardano
@@ -18,3 +17,4 @@ usd-coin
 solana
 tron
 near
+figure-heloc
