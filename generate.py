@@ -72,6 +72,10 @@ def render(template_name, output_name, width, height, replacements):
         browser.close()
 
 
+# --------------------------------
+# Fetch Data
+# --------------------------------
+
 data = fetch_data()
 
 coin = data[0]
@@ -79,12 +83,28 @@ coin = data[0]
 price = coin["current_price"]
 price_inr = price * USD_TO_INR
 
-change24 = coin["price_change_percentage_24h"] or 0
-change7d = coin["price_change_percentage_7d_in_currency"] or 0
+change24 = coin.get("price_change_percentage_24h", 0)
+change7d = coin.get("price_change_percentage_7d_in_currency", 0)
 
-sparkline = ",".join([str(p) for p in coin["sparkline_in_7d"]["price"]])
+# --------------------------------
+# Sparkline Chart Data
+# --------------------------------
+
+spark_raw = coin.get("sparkline_in_7d", {}).get("price", [])
+
+spark_trimmed = spark_raw[-60:]  # last 60 points
+
+sparkline = ",".join([str(round(p,2)) for p in spark_trimmed])
+
+# --------------------------------
+# Timestamp
+# --------------------------------
 
 updated = datetime.utcnow().strftime("%d %b %Y %H:%M UTC")
+
+# --------------------------------
+# Template Replacements
+# --------------------------------
 
 replacements = {
 
@@ -108,9 +128,13 @@ replacements = {
 
 "{{updated_time}}": updated,
 
-"{{color}}": "#00ff9c" if change24 >= 0 else "#ff4d4d"
+"{{color}}": "#22c55e" if change24 >= 0 else "#ef4444"
 
 }
+
+# --------------------------------
+# Render Image
+# --------------------------------
 
 render("square.html", f"{coin['id']}.png", 1200, 900, replacements)
 
