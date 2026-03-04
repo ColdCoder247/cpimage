@@ -100,11 +100,11 @@ margin-top:40px;
 width:600px;
 }
 
-/* RIGHT PANEL */
+/* RIGHT STATS PANEL */
 
 .stats{
 position:absolute;
-top:260px;
+top:220px;
 right:80px;
 text-align:left;
 font-size:34px;
@@ -112,11 +112,18 @@ font-size:34px;
 
 .stat{
 margin-bottom:40px;
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.stat-icon{
+font-size:28px;
 }
 
 .stat-title{
 color:#94a3b8;
-font-size:26px;
+font-size:24px;
 }
 
 .stat-value{
@@ -128,7 +135,7 @@ font-weight:600;
 
 .footer{
 position:absolute;
-bottom:30px;
+bottom:60px;
 left:0;
 width:100%;
 text-align:center;
@@ -159,30 +166,39 @@ color:#94a3b8;
 <div class="price">${{price_usd}}</div>
 <div class="price_inr">₹{{price_inr}}</div>
 
-<div class="change">{{change}}% (24H)</div>
-<div class="change7">{{change7d}}% (7D)</div>
+<div class="change">▲ {{change}}% (24H)</div>
+<div class="change7">▲ {{change7d}}% (7D)</div>
 
 <div class="chart">
 <canvas id="spark"></canvas>
 </div>
 
-<!-- RIGHT SIDE STATS -->
+<!-- RIGHT COLUMN -->
 
 <div class="stats">
 
 <div class="stat">
+<div class="stat-icon">💰</div>
+<div>
 <div class="stat-title">Market Cap</div>
 <div class="stat-value">${{market_cap}}</div>
 </div>
-
-<div class="stat">
-<div class="stat-title">Volume</div>
-<div class="stat-value">${{volume}}</div>
 </div>
 
 <div class="stat">
+<div class="stat-icon">📊</div>
+<div>
+<div class="stat-title">Volume</div>
+<div class="stat-value">${{volume}}</div>
+</div>
+</div>
+
+<div class="stat">
+<div class="stat-icon">⛓️</div>
+<div>
 <div class="stat-title">Supply</div>
 <div class="stat-value">{{supply}}</div>
+</div>
 </div>
 
 </div>
