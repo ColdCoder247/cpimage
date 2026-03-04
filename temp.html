@@ -1,109 +1,117 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+
 <style>
-body {
-  margin: 0;
-  width: 1080px;
-  height: 1080px;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#0f172a;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
 }
 
-.card {
-  width: 900px;
-  padding: 60px;
-  border-radius: 40px;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+.card{
+width:1100px;
+height:620px;
+background:#1e293b;
+border-radius:40px;
+padding:70px;
+color:white;
+position:relative;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.coin{
+font-size:60px;
+font-weight:700;
 }
 
-.coin-name {
-  font-size: 70px;
-  font-weight: 700;
+.rank{
+position:absolute;
+top:70px;
+right:80px;
+background:#0f172a;
+padding:10px 25px;
+border-radius:20px;
+font-size:30px;
 }
 
-.rank {
-  background: #111827;
-  padding: 12px 30px;
-  border-radius: 50px;
-  font-size: 32px;
+.price{
+font-size:90px;
+margin-top:40px;
+font-weight:700;
 }
 
-.price {
-  font-size: 120px;
-  margin: 40px 0;
-  font-weight: 700;
+.price_inr{
+font-size:40px;
+color:#cbd5e1;
+margin-top:10px;
 }
 
-.inr {
-  font-size: 40px;
-  opacity: 0.7;
+.change{
+font-size:50px;
+margin-top:30px;
+font-weight:600;
+color:{{color}};
 }
 
-.change {
-  font-size: 60px;
-  font-weight: bold;
-  margin-top: 20px;
-  color: {{color}};
+.section{
+display:flex;
+justify-content:space-between;
+margin-top:80px;
+font-size:40px;
 }
 
-.stats {
-  margin-top: 60px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 36px;
+.footer{
+position:absolute;
+bottom:30px;
+left:0;
+width:100%;
+text-align:center;
+font-size:28px;
+color:#94a3b8;
 }
 
-.footer {
-  margin-top: 80px;
-  font-size: 28px;
-  opacity: 0.6;
-  text-align: center;
-}
 </style>
 </head>
 
 <body>
+
 <div class="card">
 
-  <div class="header">
-    <div class="coin-name">Dogecoin</div>
-    <div class="rank">#10</div>
-  </div>
+<div class="coin">{{coin_name}}</div>
 
-  <div class="price">$0.089239</div>
-  <div class="inr">₹{{price_inr}}</div>
+<div class="rank">#{{rank}}</div>
 
-  <div class="change">-2.43% (24H)</div>
+<div class="price">${{price_usd}}</div>
 
-  <div class="stats">
-    <div>
-      <div>Market Cap</div>
-      <div>${{market_cap}}</div>
-    </div>
-    <div>
-      <div>Volume</div>
-      <div>${{volume}}</div>
-    </div>
-  </div>
+<div class="price_inr">₹{{price_inr}}</div>
 
-  <div class="footer">
-    Updated: {{updated_time}}  
-    | CoinoPrice.com
-  </div>
+<div class="change">{{change}}% (24H)</div>
+
+<div class="section">
+
+<div>
+<div>Market Cap</div>
+<div>${{market_cap}}</div>
+</div>
+
+<div>
+<div>Volume</div>
+<div>${{volume}}</div>
+</div>
 
 </div>
+
+<div class="footer">
+Updated: {{updated_time}} | CoinoPrice.com
+</div>
+
+</div>
+
 </body>
 </html>
