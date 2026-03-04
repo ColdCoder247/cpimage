@@ -1,4 +1,3 @@
-cardano
 leo-token
 polkadot
 hyperliquid
@@ -18,3 +17,4 @@ near
 figure-heloc
 dogecoin
 whitebit
+usds
