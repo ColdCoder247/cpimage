@@ -9,8 +9,8 @@
 
 body{
 margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);
+font-family:Arial;
+background:linear-gradient(135deg,#0f172a,#1e293b);
 display:flex;
 justify-content:center;
 align-items:center;
@@ -19,16 +19,15 @@ height:100vh;
 
 .card{
 width:1100px;
-height:820px;
+height:800px;
 background:#1e293b;
 border-radius:40px;
 padding:70px;
 color:white;
 position:relative;
-box-shadow:0 0 40px rgba(0,0,0,0.5);
 }
 
-/* HEADER */
+/* header */
 
 .coin-header{
 display:flex;
@@ -40,34 +39,31 @@ gap:20px;
 width:70px;
 height:70px;
 border-radius:50%;
-box-shadow:0 0 18px rgba(255,165,0,0.6);
 }
 
 .coin{
 font-size:60px;
-font-weight:700;
+font-weight:bold;
 }
 
 .symbol{
 font-size:26px;
 color:#94a3b8;
-margin-top:5px;
 }
 
-/* RANK BADGE */
+/* rank */
 
 .rank{
 position:absolute;
 top:70px;
 right:80px;
 background:#0b1220;
-border:1px solid #2a3347;
 padding:10px 25px;
 border-radius:20px;
 font-size:28px;
 }
 
-/* PRICE */
+/* price */
 
 .price{
 font-size:90px;
@@ -80,43 +76,41 @@ font-size:40px;
 color:#cbd5e1;
 }
 
-/* CHANGE INDICATORS */
+/* change line */
 
-.change{
-margin-top:25px;
-font-size:40px;
+.change-line{
+display:flex;
+gap:40px;
+margin-top:20px;
+font-size:36px;
+}
+
+.change24{
 color:#22c55e;
 }
 
 .change7{
-font-size:28px;
 color:#3b82f6;
 }
 
-/* CHART */
+/* chart */
 
 .chart{
 margin-top:40px;
-width:600px;
+width:650px;
+height:260px;
 }
 
-/* RIGHT STATS PANEL */
+/* right stats */
 
 .stats{
 position:absolute;
-top:230px;
+top:220px;
 right:80px;
 }
 
 .stat{
 margin-bottom:45px;
-display:flex;
-align-items:center;
-gap:12px;
-}
-
-.stat-icon{
-font-size:26px;
 }
 
 .stat-title{
@@ -129,16 +123,15 @@ font-size:36px;
 font-weight:600;
 }
 
-/* FOOTER */
+/* footer */
 
 .footer{
 position:absolute;
-bottom:100px;
+bottom:90px;
 width:100%;
 text-align:center;
 font-size:26px;
 color:#94a3b8;
-letter-spacing:1px;
 }
 
 </style>
@@ -147,8 +140,6 @@ letter-spacing:1px;
 <body>
 
 <div class="card">
-
-<!-- HEADER -->
 
 <div class="coin-header">
 
@@ -163,53 +154,39 @@ letter-spacing:1px;
 
 <div class="rank">#{{rank}}</div>
 
-<!-- PRICE -->
-
 <div class="price">${{price_usd}}</div>
 <div class="price_inr">₹{{price_inr}}</div>
 
-<!-- CHANGE -->
+<div class="change-line">
 
-<div class="change">🟢 +{{change}}% (24H)</div>
+<div class="change24">🟢 +{{change}}% (24H)</div>
+
 <div class="change7">🔵 +{{change7d}}% (7D)</div>
 
-<!-- CHART -->
+</div>
 
 <div class="chart">
 <canvas id="spark"></canvas>
 </div>
 
-<!-- RIGHT PANEL -->
-
 <div class="stats">
 
 <div class="stat">
-<div class="stat-icon">💰</div>
-<div>
 <div class="stat-title">Market Cap</div>
 <div class="stat-value">${{market_cap}}</div>
 </div>
-</div>
 
 <div class="stat">
-<div class="stat-icon">📊</div>
-<div>
 <div class="stat-title">Volume</div>
 <div class="stat-value">${{volume}}</div>
 </div>
-</div>
 
 <div class="stat">
-<div class="stat-icon">⛓️</div>
-<div>
 <div class="stat-title">Supply</div>
 <div class="stat-value">{{supply}}</div>
 </div>
-</div>
 
 </div>
-
-<!-- FOOTER -->
 
 <div class="footer">
 Updated: {{updated_time}} | CoinoPrice.com
@@ -219,20 +196,20 @@ Updated: {{updated_time}} | CoinoPrice.com
 
 <script>
 
-const data = [{{sparkline_data}}];
+const prices = [{{sparkline_data}}];
 
 new Chart(document.getElementById("spark"),{
 
 type:"line",
 
 data:{
-labels:data,
+labels:prices,
 datasets:[{
-data:data,
+data:prices,
 borderColor:"#22c55e",
 borderWidth:3,
 pointRadius:0,
-fill:false
+tension:0.4
 }]
 },
 
@@ -241,6 +218,7 @@ plugins:{legend:{display:false}},
 scales:{
 x:{display:false},
 y:{display:false}
+}
 }
 
 });
