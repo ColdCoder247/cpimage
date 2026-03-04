@@ -18,3 +18,4 @@ figure-heloc
 dogecoin
 whitebit
 usds
+usual-usd
