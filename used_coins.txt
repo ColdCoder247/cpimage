@@ -20,3 +20,4 @@ whitebit
 usds
 usual-usd
 usdtb
+okb
