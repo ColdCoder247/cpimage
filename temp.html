@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
 body{
 margin:0;
-font-family:Arial;
+font-family:Arial, Helvetica, sans-serif;
 background:#0f172a;
 display:flex;
 justify-content:center;
@@ -28,12 +25,12 @@ color:white;
 position:relative;
 }
 
-/* header */
+/* Header with logo */
 
 .coin-header{
 display:flex;
 align-items:center;
-gap:20px;
+gap:25px;
 }
 
 .coin-logo{
@@ -47,71 +44,49 @@ font-size:60px;
 font-weight:700;
 }
 
-.symbol{
-font-size:28px;
-color:#94a3b8;
-}
-
-/* rank badge */
-
 .rank{
 position:absolute;
 top:70px;
 right:80px;
-background:#111827;
+background:#0f172a;
 padding:10px 25px;
 border-radius:20px;
 font-size:30px;
 }
 
-/* price */
-
 .price{
 font-size:90px;
-margin-top:30px;
+margin-top:40px;
+font-weight:700;
 }
 
 .price_inr{
-font-size:38px;
+font-size:40px;
 color:#cbd5e1;
+margin-top:10px;
 }
-
-/* changes */
 
 .change{
-font-size:40px;
-margin-top:20px;
-color:{{color}};
+font-size:50px;
+margin-top:30px;
+font-weight:600;
+color:#00ff9c;
 }
-
-.change7{
-font-size:30px;
-color:#38bdf8;
-}
-
-/* stats */
 
 .section{
 display:flex;
 justify-content:space-between;
-margin-top:60px;
-font-size:34px;
+margin-top:80px;
+font-size:40px;
 }
-
-/* sparkline */
-
-.chart{
-margin-top:40px;
-}
-
-/* footer */
 
 .footer{
 position:absolute;
 bottom:30px;
+left:0;
 width:100%;
 text-align:center;
-font-size:26px;
+font-size:28px;
 color:#94a3b8;
 }
 
@@ -123,87 +98,37 @@ color:#94a3b8;
 <div class="card">
 
 <div class="coin-header">
-
-<img src="{{logo_url}}" class="coin-logo">
-
-<div>
-
-<div class="coin">{{coin_name}}</div>
-<div class="symbol">{{symbol}}</div>
-
+<img src="https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png?1696501400" class="coin-logo">
+<div class="coin">Bitcoin</div>
 </div>
 
-</div>
+<div class="rank">#1</div>
 
-<div class="rank">#{{rank}}</div>
+<div class="price">$68,724.00</div>
 
-<div class="price">${{price_usd}}</div>
-<div class="price_inr">₹{{price_inr}}</div>
+<div class="price_inr">₹5,704,092</div>
 
-<div class="change">{{change}}% (24H)</div>
-<div class="change7">{{change7d}}% (7D)</div>
-
-<div class="chart">
-
-<canvas id="spark"></canvas>
-
-</div>
+<div class="change">0.87% (24H)</div>
 
 <div class="section">
 
 <div>
 <div>Market Cap</div>
-<div>${{market_cap}}</div>
+<div>$1373.62B</div>
 </div>
 
 <div>
 <div>Volume</div>
-<div>${{volume}}</div>
-</div>
-
-<div>
-<div>Supply</div>
-<div>{{supply}}</div>
+<div>$55.26B</div>
 </div>
 
 </div>
 
 <div class="footer">
-Updated: {{updated_time}} | CoinoPrice.com
+Updated: 04 Mar 2026 07:39 UTC | CoinoPrice.com
 </div>
 
 </div>
-
-<script>
-
-const data = [{{sparkline_data}}];
-
-new Chart(document.getElementById("spark"),{
-
-type:"line",
-
-data:{
-labels:data,
-datasets:[{
-data:data,
-borderColor:"#22c55e",
-borderWidth:3,
-pointRadius:0,
-fill:false
-}]
-},
-
-options:{
-plugins:{legend:{display:false}},
-scales:{
-x:{display:false},
-y:{display:false}
-}
-}
-
-});
-
-</script>
 
 </body>
 </html>
