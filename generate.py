@@ -148,7 +148,6 @@ def build_replacements(coin):
         "{{supply}}": format_number(coin["circulating_supply"]),
 
         "{{sparkline_data}}": sparkline,
-
         "{{updated_time}}": updated
     }
 
@@ -157,89 +156,31 @@ def build_replacements(coin):
 # MAIN
 # -------------------------
 
+print("Fetching crypto market data...")
+
 data = fetch_top_100()
 used = load_used()
 
-
-# RANDOM COIN
-
+# pick random coin not used recently
 available = [c for c in data if c["id"] not in used]
 
 if not available:
     available = data
 
-random_coin = random.choice(available)
+coin = random.choice(available)
 
-save_used(random_coin["id"])
+save_used(coin["id"])
 
-render(
-    "square.html",
-    "random_coin.png",
-    build_replacements(random_coin)
-)
+# unique filename
+timestamp = datetime.utcnow().strftime("%Y-%m-%d_%H-%M")
+coin_slug = coin["name"].lower().replace(" ", "-")
 
-
-# TOP GAINER
-
-gainer = sorted(
-    data,
-    key=lambda x: x["price_change_percentage_24h"] or 0,
-    reverse=True
-)[0]
+filename = f"{coin_slug}_{timestamp}.png"
 
 render(
     "square.html",
-    "top_gainer.png",
-    build_replacements(gainer)
+    filename,
+    build_replacements(coin)
 )
 
-
-# TOP LOSER
-
-loser = sorted(
-    data,
-    key=lambda x: x["price_change_percentage_24h"] or 0
-)[0]
-
-render(
-    "square.html",
-    "top_loser.png",
-    build_replacements(loser)
-)
-
-
-# TRENDING
-
-trending_ids = fetch_trending()
-
-trending = [c for c in data if c["id"] in trending_ids]
-
-trend_coin = random.choice(trending) if trending else random.choice(data)
-
-render(
-    "square.html",
-    "trending_coin.png",
-    build_replacements(trend_coin)
-)
-
-
-# GAINER VS LOSER CARD
-
-render(
-    "gainer_loser.html",
-    "gainer_vs_loser.png",
-    {
-        "{{gainer_name}}": gainer["name"],
-        "{{gainer_price}}": gainer["current_price"],
-        "{{gainer_change}}": round(gainer["price_change_percentage_24h"],2),
-        "{{gainer_logo}}": gainer["image"],
-
-        "{{loser_name}}": loser["name"],
-        "{{loser_price}}": loser["current_price"],
-        "{{loser_change}}": round(loser["price_change_percentage_24h"],2),
-        "{{loser_logo}}": loser["image"]
-    }
-)
-
-
-print("All images generated successfully")
+print("Generated image:", filename)
