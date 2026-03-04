@@ -93,20 +93,35 @@ font-size:28px;
 color:#38bdf8;
 }
 
-/* sparkline */
+/* chart */
 
 .chart{
 margin-top:40px;
 width:600px;
 }
 
-/* stats */
+/* RIGHT PANEL */
 
-.section{
-display:flex;
-justify-content:space-between;
-margin-top:60px;
-font-size:32px;
+.stats{
+position:absolute;
+top:260px;
+right:80px;
+text-align:left;
+font-size:34px;
+}
+
+.stat{
+margin-bottom:40px;
+}
+
+.stat-title{
+color:#94a3b8;
+font-size:26px;
+}
+
+.stat-value{
+font-size:36px;
+font-weight:600;
 }
 
 /* footer */
@@ -133,51 +148,47 @@ color:#94a3b8;
 <img src="https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png?1696501400" class="coin-logo">
 
 <div>
-
 <div class="coin">Bitcoin</div>
 <div class="symbol">BTC</div>
-
 </div>
 
 </div>
 
 <div class="rank">#1</div>
 
-<div class="price">$69,453.00</div>
+<div class="price">$69,610.00</div>
+<div class="price_inr">₹5,777,630</div>
 
-<div class="price_inr">₹5,764,599</div>
-
-<div class="change">1.91% (24H)</div>
-
-<div class="change7">7.05% (7D)</div>
+<div class="change">2.12% (24H)</div>
+<div class="change7">7.29% (7D)</div>
 
 <div class="chart">
-
 <canvas id="spark"></canvas>
-
 </div>
 
-<div class="section">
+<!-- RIGHT SIDE STATS -->
 
-<div>
-<div>Market Cap</div>
-<div>$1378.74B</div>
+<div class="stats">
+
+<div class="stat">
+<div class="stat-title">Market Cap</div>
+<div class="stat-value">$1389.43B</div>
 </div>
 
-<div>
-<div>Volume</div>
-<div>$48.0B</div>
+<div class="stat">
+<div class="stat-title">Volume</div>
+<div class="stat-value">$56.97B</div>
 </div>
 
-<div>
-<div>Supply</div>
-<div>20.0M</div>
+<div class="stat">
+<div class="stat-title">Supply</div>
+<div class="stat-value">20.0M</div>
 </div>
 
 </div>
 
 <div class="footer">
-Updated: 04 Mar 2026 07:50 UTC | CoinoPrice.com
+Updated: 04 Mar 2026 08:10 UTC | CoinoPrice.com
 </div>
 
 </div>
