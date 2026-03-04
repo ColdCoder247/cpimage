@@ -6,15 +6,11 @@ from datetime import datetime
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
-USED_FILE = os.path.join(BASE_DIR, "used_coins.txt")
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 USD_TO_INR = 83
 
-# --------------------------------
-# Utility
-# --------------------------------
 
 def format_number(num):
 
@@ -69,31 +65,26 @@ def render(template_name, output_name, width, height, replacements):
 
         page.goto(f"file://{temp_file}")
 
-        page.wait_for_timeout(1000)
+        page.wait_for_timeout(1500)
 
         page.screenshot(path=os.path.join(OUTPUT_DIR, output_name))
 
         browser.close()
 
 
-# --------------------------------
-# Fetch coin
-# --------------------------------
-
 data = fetch_data()
 
 coin = data[0]
 
 price = coin["current_price"]
-
 price_inr = price * USD_TO_INR
 
 change24 = coin["price_change_percentage_24h"] or 0
 change7d = coin["price_change_percentage_7d_in_currency"] or 0
 
-updated = datetime.utcnow().strftime("%d %b %Y %H:%M UTC")
-
 sparkline = ",".join([str(p) for p in coin["sparkline_in_7d"]["price"]])
+
+updated = datetime.utcnow().strftime("%d %b %Y %H:%M UTC")
 
 replacements = {
 
@@ -111,7 +102,6 @@ replacements = {
 
 "{{market_cap}}": format_number(coin["market_cap"]),
 "{{volume}}": format_number(coin["total_volume"]),
-
 "{{supply}}": format_number(coin["circulating_supply"]),
 
 "{{sparkline_data}}": sparkline,
@@ -122,6 +112,6 @@ replacements = {
 
 }
 
-render("square.html", f"{coin['id']}.png", 1080, 1080, replacements)
+render("square.html", f"{coin['id']}.png", 1200, 900, replacements)
 
 print("Image generated successfully")
