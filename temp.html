@@ -3,14 +3,13 @@
 <head>
 
 <meta charset="UTF-8">
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
 body{
 margin:0;
-font-family:Arial;
+font-family:Arial, Helvetica, sans-serif;
 background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);
 display:flex;
 justify-content:center;
@@ -29,19 +28,19 @@ position:relative;
 box-shadow:0 0 40px rgba(0,0,0,0.5);
 }
 
-/* header */
+/* HEADER */
 
 .coin-header{
 display:flex;
 align-items:center;
-gap:25px;
+gap:20px;
 }
 
 .coin-logo{
 width:70px;
 height:70px;
 border-radius:50%;
-box-shadow:0 0 20px rgba(255,165,0,0.6);
+box-shadow:0 0 18px rgba(255,165,0,0.6);
 }
 
 .coin{
@@ -52,48 +51,49 @@ font-weight:700;
 .symbol{
 font-size:26px;
 color:#94a3b8;
+margin-top:5px;
 }
 
-/* rank badge */
+/* RANK BADGE */
 
 .rank{
 position:absolute;
 top:70px;
 right:80px;
-background:#111827;
-border:1px solid #374151;
+background:#0b1220;
+border:1px solid #2a3347;
 padding:10px 25px;
 border-radius:20px;
 font-size:28px;
 }
 
-/* price */
+/* PRICE */
 
 .price{
-font-size:85px;
-margin-top:25px;
+font-size:90px;
+margin-top:30px;
 font-weight:700;
 }
 
 .price_inr{
-font-size:38px;
+font-size:40px;
 color:#cbd5e1;
 }
 
-/* changes */
+/* CHANGE INDICATORS */
 
 .change{
-font-size:42px;
-margin-top:20px;
-color:#00ff9c;
+margin-top:25px;
+font-size:40px;
+color:#22c55e;
 }
 
 .change7{
 font-size:28px;
-color:#38bdf8;
+color:#3b82f6;
 }
 
-/* chart */
+/* CHART */
 
 .chart{
 margin-top:40px;
@@ -104,21 +104,19 @@ width:600px;
 
 .stats{
 position:absolute;
-top:220px;
+top:230px;
 right:80px;
-text-align:left;
-font-size:34px;
 }
 
 .stat{
-margin-bottom:40px;
+margin-bottom:45px;
 display:flex;
 align-items:center;
-gap:15px;
+gap:12px;
 }
 
 .stat-icon{
-font-size:28px;
+font-size:26px;
 }
 
 .stat-title{
@@ -131,16 +129,16 @@ font-size:36px;
 font-weight:600;
 }
 
-/* footer */
+/* FOOTER */
 
 .footer{
 position:absolute;
-bottom:60px;
-left:0;
+bottom:100px;
 width:100%;
 text-align:center;
 font-size:26px;
 color:#94a3b8;
+letter-spacing:1px;
 }
 
 </style>
@@ -149,6 +147,8 @@ color:#94a3b8;
 <body>
 
 <div class="card">
+
+<!-- HEADER -->
 
 <div class="coin-header">
 
@@ -163,17 +163,23 @@ color:#94a3b8;
 
 <div class="rank">#1</div>
 
-<div class="price">$69,368.00</div>
-<div class="price_inr">₹5,757,544</div>
+<!-- PRICE -->
 
-<div class="change">▲ 1.97% (24H)</div>
-<div class="change7">▲ 6.91% (7D)</div>
+<div class="price">$69,298.00</div>
+<div class="price_inr">₹5,751,734</div>
+
+<!-- CHANGE -->
+
+<div class="change">🟢 +1.96% (24H)</div>
+<div class="change7">🔵 +6.81% (7D)</div>
+
+<!-- CHART -->
 
 <div class="chart">
 <canvas id="spark"></canvas>
 </div>
 
-<!-- RIGHT COLUMN -->
+<!-- RIGHT PANEL -->
 
 <div class="stats">
 
@@ -181,7 +187,7 @@ color:#94a3b8;
 <div class="stat-icon">💰</div>
 <div>
 <div class="stat-title">Market Cap</div>
-<div class="stat-value">$1387.28B</div>
+<div class="stat-value">$1385.96B</div>
 </div>
 </div>
 
@@ -189,7 +195,7 @@ color:#94a3b8;
 <div class="stat-icon">📊</div>
 <div>
 <div class="stat-title">Volume</div>
-<div class="stat-value">$56.5B</div>
+<div class="stat-value">$53.58B</div>
 </div>
 </div>
 
@@ -203,8 +209,10 @@ color:#94a3b8;
 
 </div>
 
+<!-- FOOTER -->
+
 <div class="footer">
-Updated: 04 Mar 2026 08:17 UTC | CoinoPrice.com
+Updated: 04 Mar 2026 08:23 UTC | CoinoPrice.com
 </div>
 
 </div>
@@ -233,7 +241,6 @@ plugins:{legend:{display:false}},
 scales:{
 x:{display:false},
 y:{display:false}
-}
 }
 
 });
