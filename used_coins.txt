@@ -1,4 +1,3 @@
-bitcoin-cash
 morpho
 cardano
 leo-token
@@ -18,3 +17,4 @@ solana
 tron
 near
 figure-heloc
+dogecoin
